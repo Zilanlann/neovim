@@ -10,13 +10,11 @@ local Util = require("lazyvim.util")
 local map = vim.keymap.set
 
 local lazyterm = function()
-  Util.float_term(nil, { cwd = Util.get_root() })
+  Util.terminal(nil, { cwd = Util.root() })
 end
 map("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
 map("n", "<leader>fT", function()
-  Util.float_term()
+  Util.terminal()
 end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
+map("n", "<c-/>", lazyterm, { desc = "Terminal (cwd)" })
 map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
