@@ -9,12 +9,15 @@ local Util = require("lazyvim.util")
 -- use `vim.keymap.set` instead
 local map = vim.keymap.set
 
+-- floating terminal
 local lazyterm = function()
   Util.terminal(nil, { cwd = Util.root() })
 end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<leader>fT", function()
+map("n", "<leader>fT", lazyterm, { desc = "Terminal (root dir)" })
+map("n", "<leader>ft", function()
   Util.terminal()
 end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", lazyterm, { desc = "Terminal (cwd)" })
+map("n", "<c-/>", function()
+  Util.terminal()
+end, { desc = "Terminal (cwd)" })
 map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
